@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Darsh_Video::elements" title="Darsh Video" module="Darsh_Video" parent="Magento_Backend::content"
+             sortOrder="10" resource="Darsh_Video::elements"/>
+
+        <add id="Darsh_Video::video" title="Video" module="Darsh_Video" sortOrder="10"
+             parent="Darsh_Video::elements" action="video/video/" resource="Darsh_Video::video"/>
+    </menu>
+</config>

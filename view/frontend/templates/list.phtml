@@ -1,0 +1,68 @@
+<h4>Videos</h4>
+<?php
+$loaderCounter = 1;
+$i = 0;
+foreach ($block->getVideo() as $video):?>
+		<?php //var_dump($loaderCounter); ?>
+	<?php if($loaderCounter % 15 == 1): $i++;?>
+		<div id="section_<?php echo $i ?>" class="section" <?php if($i!=1): ?>style="display:none;"<?php endif;?>>
+	<?php endif; ?>
+	<a href=<?php echo $this->getUrl("video/index/view/") ?>id/<?php echo $video->getId() ?> target="_blank">
+		<div class="item">
+	    	<img src="<?php echo $block->getMediaPath() . $video->getVideoImage(); ?>">
+			<div class="detail">
+		   		<a class="title" href="<?php echo $video->getVideoUrl(); ?>" target="_blank"><?php echo $video->getTitle(); ?></a>
+		    	<span class="description">
+		    		<?php echo $video->getVideoDescription(); ?>
+		    	</span>
+	    	</div>
+    	</div>
+    </a>
+ 	<?php if($loaderCounter % 15 == 0): ?>
+	 		<div class="loadmore">
+	 			<button data-id="<?php echo $i; ?>" type="button">Load more</button>
+			</div>
+    	</div>	  
+ 	<?php endif; $loaderCounter ++;?>
+
+<?php endforeach; ?>
+
+<script type="text/javascript">
+require(['jquery'], function ($) {
+	jQuery(".loadmore button").click(function(){
+		var section = jQuery(this).attr("data-id");		
+		
+		jQuery(this).parent(".loadmore").remove();
+		jQuery("#section_"+(parseInt(section)+1)).show();
+		jQuery("#section_"+(parseInt(section)+1)+" .item").hide();
+		jQuery("#section_"+(parseInt(section)+1)+" .item").each(function(i){
+        	jQuery(this).hide().delay(i*500).fadeIn(100);
+		});
+	});
+});
+</script>
+
+<style>
+.section{
+	display: block;
+	width: 100%;
+	position: relative;
+}
+.section .item{
+	width: 33.33%;
+	float: left;
+	max-height: 200px;
+	background: #f1f1f1;
+}
+.item img,
+.item detail{
+	float: left;
+}
+.item img{
+	width: 40%;
+	max-height: 150px;
+}
+.item detail{
+	width: 60%;
+}
+</style>

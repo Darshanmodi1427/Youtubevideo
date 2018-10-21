@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="jquery/fileUploader/css/jquery.fileupload-ui.css"/>
+    </head>
+    <update handle="editor"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="Darsh\Video\Block\Adminhtml\Video\Edit" name="darsh.video.edit"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="Darsh\Video\Block\Adminhtml\Video\Edit\Tabs" name="darsh.video.edit.tabs">
+                <block class="Darsh\Video\Block\Adminhtml\Video\Edit\Tab\Main"
+                       name="darsh.video.edit.tab.main"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">main_section</argument>
+                    <argument name="block" xsi:type="string">darsh.video.edit.tab.main</argument>
+                </action>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

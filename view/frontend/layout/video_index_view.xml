@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Darsh\Video\Block\VideoDetail" name="video.details" template="Darsh_Video::view.phtml" />
+        </referenceContainer>
+        <container name="video.footer" htmlTag="div" htmlClass="video-footer">
+            <block class="Magento\Cms\Block\Block" name="video.saving.money" as="video.saving.money">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">video-saving-money</argument>
+                </arguments>
+            </block>
+            <container name="video.newsletter" htmlTag="div" htmlClass="video-newsletter" after="video.saving.money">
+                <block class="Magento\Newsletter\Block\Subscribe" name="video.video.subscribe" template="Magento_Newsletter::subscribe.phtml"/>
+            </container>
+        </container>
+        <move element="video.footer" destination="main.content" after="video.list" />        
+    </body>
+</page>

@@ -1,0 +1,30 @@
+<?php  
+	$video = $block->getVideoDetails(); 
+	$title = $video->getTitle();
+	$videoUrl = $video->getVideoUrl();
+	$relatedVideos = $block->getRelatedVideos();
+?>
+
+<?php if($video): ?>
+	<div class="video-view">
+		<div class="video-details">
+			<h2>TRR YouTube Video Tutorials</h2>
+			<?php echo $videoUrl; ?>
+		</div>
+		<div class="related">
+			<h2>Related</h2>
+			<?php foreach ($relatedVideos as $key => $video): ?>
+				<a href=<?php echo $this->getUrl("video/index/view/") ?>id/<?php echo $video->getId() ?> target="_blank">
+					<div class="item">
+				    	<img src="<?php echo $block->getMediaPath() . $video->getVideoImage(); ?>">
+						<div class="detail">
+					   		<a class="title" href="<?php echo $video->getVideoUrl(); ?>" target="_blank"><?php echo $video->getTitle(); ?></a>
+				    	</div>
+			    	</div>
+			    </a>
+			<?php endforeach; ?>
+		</div>
+	</div>
+<?php endif; ?>
+
+<div>
